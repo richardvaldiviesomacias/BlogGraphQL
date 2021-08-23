@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:BlogGraphQL.ViewModels;assembly=BlogGraphQL"
+             x:Class="BlogGraphQL.UserView"
+             x:DataType="viewModels:UserViewModel">
+    <Grid RowDefinitions="*,*" Padding="10">
+        <Label Text="{Binding Id}" Grid.Row="0" />
+        <Label Text="{Binding Name}" Grid.Row="1" />
+    </Grid>
+</ContentView>
