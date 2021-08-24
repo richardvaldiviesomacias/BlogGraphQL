@@ -1,6 +1,6 @@
-﻿using System;
-using BlogGraphQL.Models.App;
+﻿using BlogGraphQL.Models.App;
 using BlogGraphQL.Services;
+using BlogGraphQL.Services.Mapping;
 using BlogGraphQL.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

@@ -3,17 +3,17 @@ using BlogGraphQL.Models.App;
 
 namespace BlogGraphQL.ViewModels
 {
-    public class UserViewModel: INotifyPropertyChanged
+    public class UserViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public readonly UserModel UserModel;
-        public long Id => UserModel.Id;
-        public string Name => UserModel.Name;
+        private readonly UserModel userModel;
+        public long Id => userModel.Id;
+        public string Name => userModel.Name;
+
         public UserViewModel(UserModel userModel)
         {
-            UserModel = userModel;
-            userModel.PropertyChanged += (o, e) => PropertyChanged?.Invoke(this, e); 
+            this.userModel = userModel;
+            userModel.PropertyChanged += (_, e) => PropertyChanged?.Invoke(this, e);
         }
-
     }
 }

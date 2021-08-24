@@ -1,38 +1,42 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using BlogGraphQL.Models.App;
 using BlogGraphQL.Models.Data;
+using BlogGraphQL.Services.Mapping;
+using Newtonsoft.Json;
 
 namespace BlogGraphQL.Services
 {
     public class UserService
     {
-        public UserMapping UserMapping { get; set; }
+        private readonly UserMapping userMapping;
+
         public UserService(UserMapping userMapping)
         {
-            UserMapping = userMapping;
+            this.userMapping = userMapping;
         }
 
-        public List<UserModel> GetUsers()
+        public async Task<List<UserModel>> GetUsers()
         {
             //call real api
             //fake until you make it
-            var users = new List<User>();
-            users.AddRange(new List<User>()
-            {
-                new User
-                {
-                    Id = 1, 
-                    Name = "John Doe"
-                },
-                new User
-                {
-                    Id = 2, 
-                    Name = "Samantha Doe"
-                }
-            });
-            
-            return UserMapping.ToUserModels(users);
-            
+            var userQuery = new GraphQLQuery
+            (
+                @"{
+                     allUsers {
+                      id
+                      name
+                    }
+                  }"
+            );
+
+            var data = await userQuery.Execute<AllUsers>();
+            return userMapping.ToUserModels(data.Users);
+        }
+
+        private record AllUsers
+        {
+            [JsonProperty("allUsers")] public List<User> Users { get; set; }
         }
     }
 }

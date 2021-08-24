@@ -3,19 +3,19 @@ using BlogGraphQL.Models.App;
 
 namespace BlogGraphQL.ViewModels
 {
-    public class PostViewModel: INotifyPropertyChanged
+    public class PostViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public readonly PostModel PostModel;
-        public long Id => PostModel.Id;
-        public string Title => PostModel.Title;
-        public long Views => PostModel.Views;
-        public long UserId => PostModel.UserId;
+        private readonly PostModel postModel;
+        public long Id => postModel.Id;
+        public string Title => postModel.Title;
+        public long Views => postModel.Views;
+        public long UserId => postModel.UserId;
+
         public PostViewModel(PostModel postModel)
         {
-            PostModel = postModel;
-            postModel.PropertyChanged += (o, e) => PropertyChanged?.Invoke(this, e); 
+            this.postModel = postModel;
+            postModel.PropertyChanged += (_, e) => PropertyChanged?.Invoke(this, e);
         }
-        
     }
 }

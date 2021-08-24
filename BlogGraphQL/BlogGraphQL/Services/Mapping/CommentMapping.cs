@@ -3,7 +3,7 @@ using System.Linq;
 using BlogGraphQL.Models.App;
 using BlogGraphQL.Models.Data;
 
-namespace BlogGraphQL.Services
+namespace BlogGraphQL.Services.Mapping
 {
     public class CommentMapping
     {
@@ -34,10 +34,7 @@ namespace BlogGraphQL.Services
         public List<CommentModel> ToCommentModels(IEnumerable<Comment> comments)
         {
             var commentModels = new List<CommentModel>();
-            comments.ToList().ForEach(comment =>
-            {
-                commentModels.Add(ToCommentModel(comment));
-            });
+            comments.ToList().ForEach(comment => { commentModels.Add(ToCommentModel(comment)); });
             return commentModels;
         }
     }

@@ -3,7 +3,7 @@ using System.Linq;
 using BlogGraphQL.Models.App;
 using BlogGraphQL.Models.Data;
 
-namespace BlogGraphQL.Services
+namespace BlogGraphQL.Services.Mapping
 {
     public class UserMapping
     {
@@ -30,10 +30,7 @@ namespace BlogGraphQL.Services
         public List<UserModel> ToUserModels(IEnumerable<User> users)
         {
             var userModels = new List<UserModel>();
-            users.ToList().ForEach(user =>
-            {
-                userModels.Add(ToUserModel(user));
-            });
+            users.ToList().ForEach(user => { userModels.Add(ToUserModel(user)); });
             return userModels;
         }
     }

@@ -2,22 +2,22 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using BlogGraphQL.Models.App;
-using BlogGraphQL.Services;
 
 namespace BlogGraphQL.ViewModels
 {
-    public class BlogViewModel: INotifyPropertyChanged
+    public class BlogViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public BlogModel BlogModel { get; set; }
+
         public ObservableCollection<PostViewModel> PostViewModels { get; set; } =
-            new ObservableCollection<PostViewModel>();
+            new();
 
         public ObservableCollection<UserViewModel> UserViewModels { get; set; } =
-            new ObservableCollection<UserViewModel>();
+            new();
 
         public ObservableCollection<CommentViewModel> CommentViewModels { get; set; } =
-            new ObservableCollection<CommentViewModel>();
+            new();
 
         public BlogViewModel(BlogModel blogModel)
         {
@@ -32,12 +32,21 @@ namespace BlogGraphQL.ViewModels
                 var commentViewModel = new CommentViewModel(commentModel);
                 CommentViewModels.Add(commentViewModel);
             });
-            blogModel.Users.ToList().ForEach(userModel =>
+            blogModel.Users?.ToList().ForEach(userModel =>
             {
                 var userViewModel = new UserViewModel(userModel);
                 UserViewModels.Add(userViewModel);
             });
-            blogModel.PropertyChanged += (o, e) => PropertyChanged?.Invoke(this, e); 
+            blogModel.PropertyChanged += (_, e) => PropertyChanged?.Invoke(this, e);
+        }
+
+        public void InitializeUsers()
+        {
+            BlogModel.Users?.ToList().ForEach(userModel =>
+            {
+                var userViewModel = new UserViewModel(userModel);
+                UserViewModels.Add(userViewModel);
+            });
         }
     }
 }
