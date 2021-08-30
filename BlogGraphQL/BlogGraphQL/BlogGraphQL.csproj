@@ -12,7 +12,7 @@
 
     <ItemGroup>
         <PackageReference Include="GraphQL.Client" Version="3.2.4" />
-        <PackageReference Include="GraphQL.Client.Serializer.Newtonsoft" Version="3.2.4"/>
+        <PackageReference Include="GraphQL.Client.Serializer.Newtonsoft" Version="3.2.4" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />

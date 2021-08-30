@@ -1,4 +1,6 @@
-﻿using BlogGraphQL.ViewModels;
+﻿using System;
+using BlogGraphQL.Models.App;
+using BlogGraphQL.ViewModels;
 using Xamarin.Forms;
 
 namespace BlogGraphQL
@@ -18,6 +20,11 @@ namespace BlogGraphQL
         {
             await blogViewModel.BlogModel.InitializeAsync();
             blogViewModel.InitializeUsers();
+        }
+
+        private void Button_OnClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AddUser(new UserViewModel(new UserModel())));
         }
     }
 }

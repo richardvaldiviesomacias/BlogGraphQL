@@ -15,7 +15,7 @@ namespace BlogGraphQL
         {
             InitializeComponent();
             var viewModel = new BlogViewModel(new BlogModel(new UserService(new UserMapping())));
-            MainPage = new MainPage(viewModel);
+            MainPage = new NavigationPage(new MainPage(viewModel));
         }
 
         protected override void OnStart()

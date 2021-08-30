@@ -30,11 +30,26 @@ namespace BlogGraphQL.Services
                   }"
             );
 
-            var data = await userQuery.Execute<AllUsers>();
+            var data = await userQuery.Execute<GetAllUsers>();
             return userMapping.ToUserModels(data.Users);
         }
 
-        private record AllUsers
+        public async Task AddUser(string name)
+        {
+            var userQuery = new GraphQLQuery
+            (
+                @"{
+                     allUsers {
+                      id
+                      name
+                    }
+                  }"
+            );
+            var data = await userQuery.Execute<GetAllUsers>();
+            //return userMapping.ToUserModel(data.User);
+        }
+
+        private record GetAllUsers
         {
             [JsonProperty("allUsers")] public List<User> Users { get; set; }
         }
