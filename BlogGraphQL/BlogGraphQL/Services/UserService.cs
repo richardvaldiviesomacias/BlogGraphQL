@@ -7,15 +7,8 @@ using Newtonsoft.Json;
 
 namespace BlogGraphQL.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
-        private readonly UserMapping userMapping;
-
-        public UserService(UserMapping userMapping)
-        {
-            this.userMapping = userMapping;
-        }
-
         public async Task<List<UserModel>> GetUsers()
         {
             //call real api
@@ -31,27 +24,29 @@ namespace BlogGraphQL.Services
             );
 
             var data = await userQuery.Execute<GetAllUsers>();
-            return userMapping.ToUserModels(data.Users);
+            return UserMapping.ToUserModels(data.Users);
         }
 
-        public async Task AddUser(string name)
+        public async Task<UserModel> AddUser(string name)
         {
             var userQuery = new GraphQLQuery
             (
-                @"{
-                     allUsers {
-                      id
-                      name
-                    }
-                  }"
+                "mutation" +
+                $"{{createUser(name:\"{ name }\") " +
+                "{id name}}"
             );
-            var data = await userQuery.Execute<GetAllUsers>();
-            //return userMapping.ToUserModel(data.User);
+            var data = await userQuery.Execute<CreateUser>();
+            return UserMapping.ToUserModel(data.User);
         }
 
         private record GetAllUsers
         {
             [JsonProperty("allUsers")] public List<User> Users { get; set; }
+        }
+        
+        private record CreateUser
+        {
+            [JsonProperty("createUser")] public User User { get; set; }
         }
     }
 }

@@ -8,7 +8,7 @@ namespace BlogGraphQL.Models.App
     public class BlogModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        private readonly UserService userService;
+        private readonly IUserService userService;
         public ObservableCollection<PostModel> Posts = new ObservableCollection<PostModel>();
         public ObservableCollection<UserModel> Users;
         public ObservableCollection<CommentModel> Comments = new ObservableCollection<CommentModel>();
@@ -18,7 +18,7 @@ namespace BlogGraphQL.Models.App
             Users = new ObservableCollection<UserModel>(await userService.GetUsers());
         }
 
-        public BlogModel(UserService userService)
+        public BlogModel(IUserService userService)
         {
             this.userService = userService;
         }

@@ -14,7 +14,6 @@
         <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
         <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
         <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-        <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
         <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
         <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     </PropertyGroup>
@@ -67,7 +66,7 @@
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\BlogGraphQL\BlogGraphQL.csproj">
-            <Project>{205C1F31-51F8-45C9-8D7F-3242270A4D34}</Project>
+            <Project>{889987F3-B5DA-43A4-80AD-D75A9F5329D1}</Project>
             <Name>BlogGraphQL</Name>
         </ProjectReference>
     </ItemGroup>

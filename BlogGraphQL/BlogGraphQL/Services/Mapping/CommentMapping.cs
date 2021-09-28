@@ -5,7 +5,7 @@ using BlogGraphQL.Models.Data;
 
 namespace BlogGraphQL.Services.Mapping
 {
-    public class CommentMapping
+    public class CommentMapping : ICommentMapping
     {
         public CommentModel ToCommentModel(Comment comment)
         {

@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using BlogGraphQL.Models.App;
 using Xamarin.Forms;
@@ -25,9 +26,9 @@ namespace BlogGraphQL.ViewModels
             userModel.PropertyChanged += (_, e) => PropertyChanged?.Invoke(this, e);
         }
 
-        private void Save()
+        private async void Save()
         {
-            
+            await userModel.Save(userModel.Name);
         }
     }
 }

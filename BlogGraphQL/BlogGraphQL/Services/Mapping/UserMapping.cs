@@ -2,14 +2,16 @@ using System.Collections.Generic;
 using System.Linq;
 using BlogGraphQL.Models.App;
 using BlogGraphQL.Models.Data;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BlogGraphQL.Services.Mapping
 {
-    public class UserMapping
+    public static class UserMapping 
     {
-        public UserModel ToUserModel(User user)
+        public static UserModel ToUserModel(User user)
         {
-            var userModel = new UserModel
+            var userService = Startup.ServiceProvider.GetService<IUserService>();
+            var userModel = new UserModel(userService)
             {
                 Id = user.Id,
                 Name = user.Name
@@ -17,7 +19,7 @@ namespace BlogGraphQL.Services.Mapping
             return userModel;
         }
 
-        public User ToUser(UserModel userModel)
+        public static User ToUser(UserModel userModel)
         {
             var user = new User
             {
@@ -27,7 +29,7 @@ namespace BlogGraphQL.Services.Mapping
             return user;
         }
 
-        public List<UserModel> ToUserModels(IEnumerable<User> users)
+        public static List<UserModel> ToUserModels(IEnumerable<User> users)
         {
             var userModels = new List<UserModel>();
             users.ToList().ForEach(user => { userModels.Add(ToUserModel(user)); });

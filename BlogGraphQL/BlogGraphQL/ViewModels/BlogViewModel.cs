@@ -42,6 +42,7 @@ namespace BlogGraphQL.ViewModels
 
         public void InitializeUsers()
         {
+            UserViewModels.Clear();
             BlogModel.Users?.ToList().ForEach(userModel =>
             {
                 var userViewModel = new UserViewModel(userModel);
