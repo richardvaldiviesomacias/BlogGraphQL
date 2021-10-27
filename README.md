@@ -1,6 +1,7 @@
 # BlogGraphQL
 In order to run this project you need to download json-graphql-server and run the following command:
- json-graphql-server db.json --p 5000
+
+```json-graphql-server db.json --p 5000```
  
  Here is the db.json file content.
  
