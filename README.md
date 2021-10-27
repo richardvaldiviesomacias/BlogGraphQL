@@ -4,7 +4,7 @@ In order to run this project you need to download json-graphql-server and run th
  
  Here is the db.json file content.
  
- {
+ ```javascript {
     "posts": [
       {
         "id": 1,
