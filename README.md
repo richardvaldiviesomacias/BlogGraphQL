@@ -1,4 +1,6 @@
 # BlogGraphQL
+This is a simple Xamarin project. You need to have either Rider or Visual Studio code to run this. Also, copy the json blob and create a file name db.json to run the json-graphql-server. If you do not have that package follow this instructions: https://blog.logrocket.com/mocking-graphql-api-server-using-json-graphql-server/
+
 In order to run this project you need to download json-graphql-server and run the following command:
 
 ```json-graphql-server db.json --p 5000```
